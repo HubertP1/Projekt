@@ -1,0 +1,2 @@
+# Projekt
+Programowanie współbieżne - projekt
