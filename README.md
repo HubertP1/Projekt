@@ -1,2 +1,8 @@
-# Projekt
-Programowanie współbieżne - projekt
+# Concurrent programming
+
+## Working Group
+
+| Name Surname (initials) | GUID                                     |
+| ----------------------- | ---------------------------------------- |
+| HP                      | `{}` |
+| DK                      | `{}` |
