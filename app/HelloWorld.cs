@@ -1,13 +1,10 @@
 ﻿namespace App
 {
-    class HelloWorld
+    public class HelloWorld
     {
-        static void Main(string[] args)
+        public static void Main(String[] args)
         {
             Console.WriteLine("Hello World!");
-            Suma suma = new Suma();
-            int wynik = suma.Sum(2, 2);
-            Console.WriteLine(wynik);
         }
     }
 }
