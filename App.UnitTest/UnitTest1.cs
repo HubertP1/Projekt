@@ -1,20 +1,14 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace App.UnitTests
+namespace App.HelloWorldTest
 {
-    internal class HelloWorldTest
+    [TestClass]
+    public class HelloWorldTest
     {
-        [Test]
+        [TestMethod]
         public void OutputTest()
         {
             StringWriter stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
-            App.HelloWorld.Main(null);
+            HelloWorld.Main(null);
             string output = stringWriter.ToString().Trim();
             Assert.AreEqual("Hello World!", output);
         }
