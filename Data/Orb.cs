@@ -3,10 +3,9 @@ using System.Runtime.CompilerServices;
 
 namespace Data
 {
-    public class Orb : INotifyPropertyChanged
+    public class Orb
     {
         private readonly double radius;
-        private readonly double weight;
 
         private double posX;
         private double posY;
@@ -14,17 +13,14 @@ namespace Data
         private double velX;
         private double velY;
 
-        public Orb(double radius, double weight, double posX, double posY)
+        public Orb(double radius, double posX, double posY)
         {
             this.radius = radius;
-            this.weight = weight;
             this.posX = posX;
             this.posY = posY;
         }
 
         public double Radius { get { return radius; } }
-
-        public double Weight { get { return weight; } }
 
         public double PositionX
         {
@@ -32,7 +28,6 @@ namespace Data
             set
             {
                 posX = value;
-                OnPropertyChanged("PositionX");
             }
         }
 
@@ -42,7 +37,6 @@ namespace Data
             set
             {
                 posY = value;
-                OnPropertyChanged("PositionY");
             }
         }
 
@@ -62,12 +56,6 @@ namespace Data
             {
                 velY = value;
             }
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

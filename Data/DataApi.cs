@@ -1,6 +1,6 @@
 ﻿namespace Data
 {
-    public class Data : IData
+    public class DataApi : IData
     {
         private int sceneHeight;
         private int sceneWidth;
@@ -9,14 +9,14 @@
 
         private List<Orb> orbs;
 
-        public Data()
+        public DataApi()
         {
             orbs = new List<Orb>();
         }
 
-        public void AddOrb(Orb orb)
+        public void AddOrb(double radius, double posX, double posY)
         {
-            orbs.Add(orb);
+            orbs.Add(new Orb(radius, posX, posY));
         }
 
         public List<Orb> GetOrbs()
