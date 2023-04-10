@@ -6,8 +6,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Projekt_Współbierzne\View.csproj" />
-  </ItemGroup>
-
 </Project>
