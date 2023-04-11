@@ -13,10 +13,11 @@
         Background="#7c7c7c"
         ResizeMode="{Binding ResizeMode}">
     <Window.DataContext>
-        <viewModel:ViewModelApi/>
+        <viewModel:ViewModel/>
     </Window.DataContext>
 
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600*"/>
             <ColumnDefinition Width="150"/>
@@ -29,6 +30,6 @@
 
         <Button Grid.Column="1" Content="Start" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Width="62" IsEnabled="{Binding IsDisabled}" Command="{Binding StartButton}"/>
         <Button Grid.Column="1" Content="Stop" HorizontalAlignment="Right" Margin="75,58,10,0" VerticalAlignment="Top" Width="62" IsEnabled="{Binding IsEnabled}"  Command="{Binding StopButton}"/>
-        
+   
     </Grid>
 </Window>

@@ -6,53 +6,23 @@ using System.Windows.Input;
 
 namespace ViewModel
 {
-    public class ViewModelApi : INotifyPropertyChanged
+    public class ViewModel : INotifyPropertyChanged
     {
         private int orbRadius = 20; // Na sztywno narazie
+        private int orbQuantity;
 
+        private ResizeMode resizeMode;
         private double windowHeight;
         private double windowWidth;
-        private ResizeMode resizeMode;
-        private int orbQuantity;
-        private bool isEnabled = false;
 
-        public ViewModelApi()
+        private bool isEnabled;
+
+        public ViewModel()
         {
             StartButton = new Signal(Enable);
             StopButton = new Signal(Disable);
             resizeMode = ResizeMode.CanResize;
-        }
-
-        public double WindowHeight
-        {
-            get { return windowHeight; }
-            set
-            {
-                windowHeight = value;
-                OnPropertyChanged("WindowHeight");
-            }
-        }
-
-        public double WindowWidth
-        {
-            get { return windowWidth; }
-            set
-            {
-                windowWidth = value;
-                OnPropertyChanged("WindowWidth");
-            }
-        }
-
-        public ICommand StartButton
-        {
-            get;
-            set;
-        }
-
-        public ICommand StopButton
-        {
-            get;
-            set;
+            isEnabled = false;
         }
 
         public string OrbQuantity
@@ -83,6 +53,30 @@ namespace ViewModel
             }
         }
 
+        public double WindowHeight
+        {
+            get { return windowHeight; }
+            set
+            {
+                windowHeight = value;
+                OnPropertyChanged("WindowHeight");
+            }
+        }
+
+        public double WindowWidth
+        {
+            get { return windowWidth; }
+            set
+            {
+                windowWidth = value;
+                OnPropertyChanged("WindowWidth");
+            }
+        }
+
+        public ICommand StartButton { get; set; }
+
+        public ICommand StopButton { get; set; }
+
         public bool IsEnabled
         {
             get { return isEnabled; }
@@ -110,6 +104,8 @@ namespace ViewModel
             ResizeMode = ResizeMode.CanResize;
             IsEnabled = false;
         }
+
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
