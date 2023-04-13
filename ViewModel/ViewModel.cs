@@ -4,72 +4,76 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 
+
 namespace ViewModel
 {
     public class ViewModel : INotifyPropertyChanged
     {
-        private int orbRadius = 20; // Na sztywno narazie
-        private int orbQuantity;
-
-        private ResizeMode resizeMode;
+        /*private int orbRadius = 20; // Na sztywno narazie
+        private int orbQuantity;    
         private double windowHeight;
-        private double windowWidth;
+        private double windowWidth;*/
 
-        private bool isEnabled;
+       
+        private readonly Model.Model model = new();
+
+        
 
         public ViewModel()
         {
             StartButton = new Signal(Enable);
             StopButton = new Signal(Disable);
-            resizeMode = ResizeMode.CanResize;
-            isEnabled = false;
+            model.resizeMode = ResizeMode.CanResize;
+            model.isEnabled = false;
         }
 
         public string OrbQuantity
         {
             get
             {
-                return Convert.ToString(orbQuantity);
+                //return Convert.ToString(orbQuantity);
+                return Convert.ToString(model.orbQuantity);
             }
             set
             {
                 try
                 {
-                    orbQuantity = Convert.ToInt32(value);
+                    //orbQuantity = Convert.ToInt32(value);
+                    model.orbQuantity = Convert.ToInt32(value);
                 }
                 catch { }
 
-                OnPropertyChanged("OrbQuantity");
+                OnPropertyChanged(nameof(OrbQuantity));
             }
         }
 
         public ResizeMode ResizeMode
         {
-            get { return resizeMode; }
+            get { return model.resizeMode; }
             set
             {
-                resizeMode = value;
-                OnPropertyChanged("ResizeMode");
+                model.resizeMode = value;
+                OnPropertyChanged(nameof(ResizeMode));
             }
         }
 
         public double WindowHeight
         {
-            get { return windowHeight; }
+            get { return model.windowHeight; }
             set
             {
-                windowHeight = value;
-                OnPropertyChanged("WindowHeight");
+                model.windowHeight = value;
+                OnPropertyChanged(nameof(WindowHeight));
             }
         }
 
         public double WindowWidth
         {
-            get { return windowWidth; }
+            get { return model.windowWidth; }
             set
             {
-                windowWidth = value;
-                OnPropertyChanged("WindowWidth");
+                model.windowWidth = value;
+                OnPropertyChanged(nameof(WindowWidth));
             }
         }
 
@@ -79,10 +83,10 @@ namespace ViewModel
 
         public bool IsEnabled
         {
-            get { return isEnabled; }
+            get { return model.isEnabled; }
             set
             {
-                isEnabled = value;
+                model.isEnabled = value;
                 OnPropertyChanged("IsEnabled");
                 OnPropertyChanged("IsDisabled");
             }

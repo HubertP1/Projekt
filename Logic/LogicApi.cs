@@ -30,7 +30,7 @@ namespace Logic
 
             // Generowanie orbów
             dataApi.ClearOrbs();
-            Random rand = new Random();
+            Random rand = new();
             for (int i = 0; i < orbCount; i++)
             {
                 int x = rand.Next(radius, width - radius);
@@ -41,7 +41,7 @@ namespace Logic
             // Tworzenie wątków orbów
             foreach (var o in dataApi.GetOrbs())
             {
-                Thread thread = new Thread(() =>
+                Thread thread = new(() =>
                 {
                     while (dataApi.IsEnabled)
                     {
