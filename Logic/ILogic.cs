@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    internal interface ILogic
+    public interface ILogic
     {
         void CreateScene(int height, int width, int orbCount);
 
         void Enable();
         
         void Disable();
+
+        List<Orb> GetOrbs();
     }
 }

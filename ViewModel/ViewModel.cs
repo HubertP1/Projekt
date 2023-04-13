@@ -8,17 +8,10 @@ using System.Windows.Input;
 namespace ViewModel
 {
     public class ViewModel : INotifyPropertyChanged
-    {
-        /*private int orbRadius = 20; // Na sztywno narazie
-        private int orbQuantity;    
-        private double windowHeight;
-        private double windowWidth;*/
-
-       
+    {       
         private readonly Model.Model model = new();
 
         
-
         public ViewModel()
         {
             StartButton = new Signal(Enable);
@@ -101,12 +94,14 @@ namespace ViewModel
         {
             ResizeMode = ResizeMode.NoResize;
             IsEnabled = true;
+            model.Enable(); //
         }
 
         private void Disable()
         {
             ResizeMode = ResizeMode.CanResize;
             IsEnabled = false;
+            model.Disable(); //
         }
 
 

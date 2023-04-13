@@ -2,7 +2,7 @@
 
 namespace Logic
 {
-    internal class LogicApi : ILogic
+    public class LogicApi : ILogic
     {
         private IData dataApi;
 
@@ -75,7 +75,16 @@ namespace Logic
                 });
                 thread.Start();
             }
+        }
 
+        public List<Orb> GetOrbs() // Tymczasowo (trzeba zrobić aktualizację pozycji)
+        {
+            List<Orb> temp = new();
+            foreach (var o in dataApi.GetOrbs())
+            {
+                temp.Add(new Orb(o.Radius, o.PositionX, o.PositionY));
+            }
+            return temp;
         }
     }
 }
