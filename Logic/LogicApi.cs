@@ -34,8 +34,8 @@ namespace Logic
             {
                 int x = rand.Next(radius, (int)(width - radius));
                 int y = rand.Next(radius, (int)(height - radius));
-                int vx = rand.Next(-5,5);
-                int vy = rand.Next(-5,5);
+                int vx = rand.Next(-5, 5);
+                int vy = rand.Next(-5, 5);
                 dataApi.AddOrb(radius, x, y, vx, vy);
             }
 
@@ -44,30 +44,35 @@ namespace Logic
             {
                 Thread thread = new(() =>
                 {
+                    double minX = 2;
+                    double minY = 2;
+                    double maxX = dataApi.SceneXDimension - o.Radius - 2;
+                    double maxY = dataApi.SceneYDimension - o.Radius - 2;
+
                     while (dataApi.IsEnabled)
                     {
 
                         o.PositionX += o.VelocityX;
-                        if (o.PositionX < 0)
+                        if (o.PositionX < minX)
                         {
-                            o.PositionX = 0 ;
+                            o.PositionX = minX;
                             o.VelocityX *= -1;
-                        } 
-                        else if (o.PositionX > dataApi.SceneXDimension - o.Radius)
+                        }
+                        else if (o.PositionX > maxX)
                         {
-                            o.PositionX = dataApi.SceneXDimension - o.Radius;
+                            o.PositionX = maxX;
                             o.VelocityX *= -1;
                         }
 
                         o.PositionY += o.VelocityY;
-                        if (o.PositionY < 0 + o.Radius)
+                        if (o.PositionY < minY)
                         {
-                            o.PositionY = 0 + o.Radius;
+                            o.PositionY = minY;
                             o.VelocityY *= -1;
                         }
-                        else if (o.PositionY > dataApi.SceneYDimension - o.Radius)
+                        else if (o.PositionY > maxY)
                         {
-                            o.PositionY = dataApi.SceneYDimension - o.Radius;
+                            o.PositionY = maxY;
                             o.VelocityY *= -1;
                         }
 
