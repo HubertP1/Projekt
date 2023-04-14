@@ -2,15 +2,15 @@
 {
     public interface IData
     {
-        void AddOrb(double radius, double posX, double posY);
+        void AddOrb(double radius, double posX, double posY, double velX, double velY);
 
         List<Orb> GetOrbs();
 
         void ClearOrbs();
 
-        int SceneXDimension { get; set; }
+        double SceneXDimension { get; set; }
 
-        int SceneYDimension { get; set; }
+        double SceneYDimension { get; set; }
 
         bool IsEnabled { get; set; }
     }

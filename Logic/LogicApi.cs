@@ -21,21 +21,22 @@ namespace Logic
             dataApi.IsEnabled = true;
         }
 
-        public void CreateScene(int height, int width, int orbCount)
+        public void CreateScene(double height, double width, int orbCount, int radius)
         {
             dataApi.SceneYDimension = height;
             dataApi.SceneXDimension = width;
 
-            int radius = 20; // Na razie na sztywno
-
             // Generowanie orbów
             dataApi.ClearOrbs();
+
             Random rand = new();
             for (int i = 0; i < orbCount; i++)
             {
-                int x = rand.Next(radius, width - radius);
-                int y = rand.Next(radius, height - radius);
-                dataApi.AddOrb(radius, x, y);
+                int x = rand.Next(radius, (int)(width - radius));
+                int y = rand.Next(radius, (int)(height - radius));
+                int vx = rand.Next(-10,10);
+                int vy = rand.Next(-10,10);
+                dataApi.AddOrb(radius, x, y, vx, vy);
             }
 
             // Tworzenie wątków orbów
@@ -52,9 +53,9 @@ namespace Logic
                             o.PositionX = 0 + o.Radius;
                             o.VelocityX *= -1;
                         } 
-                        else if (o.PositionX > width - radius)
+                        else if (o.PositionX > dataApi.SceneXDimension - o.Radius)
                         {
-                            o.PositionX = width - o.Radius;
+                            o.PositionX = dataApi.SceneXDimension - o.Radius;
                             o.VelocityX *= -1;
                         }
 
@@ -64,9 +65,9 @@ namespace Logic
                             o.PositionY = 0 + o.Radius;
                             o.VelocityY *= -1;
                         }
-                        else if (o.PositionY > height - radius)
+                        else if (o.PositionY > dataApi.SceneYDimension - o.Radius)
                         {
-                            o.PositionY = height - o.Radius;
+                            o.PositionY = dataApi.SceneYDimension - o.Radius;
                             o.VelocityY *= -1;
                         }
 
@@ -77,12 +78,12 @@ namespace Logic
             }
         }
 
-        public List<Orb> GetOrbs() // Tymczasowo (trzeba zrobić aktualizację pozycji)
+        public List<Orb> GetOrbs()
         {
             List<Orb> temp = new();
             foreach (var o in dataApi.GetOrbs())
             {
-                temp.Add(new Orb(o.Radius, o.PositionX, o.PositionY));
+                temp.Add(new Orb(o));
             }
             return temp;
         }

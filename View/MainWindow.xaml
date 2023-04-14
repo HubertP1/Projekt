@@ -19,17 +19,37 @@
     <Grid>
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="600*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
 
         <Rectangle Margin="3" Grid.Column="0" Grid.Row="0" Fill="#1a1a1a" Stroke="#eff9f0" StrokeThickness="2" Stretch="Fill"/>
 
         <Label Grid.Column="1" Content="Ilość kulek:" HorizontalAlignment="Stretch" Margin="7,10,0,0" VerticalAlignment="Top" Foreground="#eff9f0"/>
-        <TextBox Grid.Column="1" Margin="10,35,10,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Text="{Binding OrbQuantity, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="1" Margin="10,35,10,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Text="{Binding OrbQuantity, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsDisabled}"/>
 
         <Button Grid.Column="1" Content="Start" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Width="62" IsEnabled="{Binding IsDisabled}" Command="{Binding StartButton}"/>
         <Button Grid.Column="1" Content="Stop" HorizontalAlignment="Right" Margin="75,58,10,0" VerticalAlignment="Top" Width="62" IsEnabled="{Binding IsEnabled}"  Command="{Binding StopButton}"/>
-   
+
+
+        <ItemsControl ItemsSource="{Binding Orbs}" Grid.Column="0" Margin="3">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="Canvas.Left" Value="{Binding PositionX}"/>
+                    <Setter Property="Canvas.Top" Value="{Binding PositionY}"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Ellipse Height="{Binding Radius}" Width="{Binding Radius}" Stroke="Gray" Fill="White" StrokeThickness="1.5"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
     </Grid>
 </Window>

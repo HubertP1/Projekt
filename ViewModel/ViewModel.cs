@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
-
+using Model;
 
 namespace ViewModel
 {
     public class ViewModel : INotifyPropertyChanged
     {       
-        private readonly Model.Model model = new();
+        private readonly ModelApi model = new();
 
         
         public ViewModel()
@@ -24,17 +25,18 @@ namespace ViewModel
         {
             get
             {
-                //return Convert.ToString(orbQuantity);
                 return Convert.ToString(model.orbQuantity);
             }
             set
             {
                 try
                 {
-                    //orbQuantity = Convert.ToInt32(value);
                     model.orbQuantity = Convert.ToInt32(value);
                 }
-                catch { }
+                catch 
+                {
+                    OrbQuantity = "0";
+                }
 
                 OnPropertyChanged(nameof(OrbQuantity));
             }
@@ -80,8 +82,8 @@ namespace ViewModel
             set
             {
                 model.isEnabled = value;
-                OnPropertyChanged("IsEnabled");
-                OnPropertyChanged("IsDisabled");
+                OnPropertyChanged(nameof (IsEnabled));
+                OnPropertyChanged(nameof (IsDisabled));
             }
         }
 
@@ -90,21 +92,25 @@ namespace ViewModel
             get { return !IsEnabled; }
         }
 
+        public ObservableCollection<Orb> Orbs 
+        { 
+            get { return model.orbs; }
+        }
+
+
         private void Enable()
         {
             ResizeMode = ResizeMode.NoResize;
             IsEnabled = true;
-            model.Enable(); //
+            model.Enable();
         }
 
         private void Disable()
         {
             ResizeMode = ResizeMode.CanResize;
             IsEnabled = false;
-            model.Disable(); //
+            model.Disable();
         }
-
-
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

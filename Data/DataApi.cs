@@ -2,8 +2,8 @@
 {
     public class DataApi : IData
     {
-        private int sceneHeight;
-        private int sceneWidth;
+        private double sceneHeight;
+        private double sceneWidth;
 
         private bool Enabled;
 
@@ -14,9 +14,9 @@
             orbs = new List<Orb>();
         }
 
-        public void AddOrb(double radius, double posX, double posY)
+        public void AddOrb(double radius, double posX, double posY, double velX = 0, double velY = 0)
         {
-            orbs.Add(new Orb(radius, posX, posY));
+            orbs.Add(new Orb(radius, posX, posY, velX, velY));
         }
 
         public List<Orb> GetOrbs()
@@ -29,13 +29,13 @@
             orbs.Clear();
         }
 
-        public int SceneXDimension
+        public double SceneXDimension
         {
             get { return sceneWidth; }
             set { sceneWidth = value; }
         }
 
-        public int SceneYDimension
+        public double SceneYDimension
         {
             get { return sceneHeight; }
             set { sceneHeight = value; }

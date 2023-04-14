@@ -4,7 +4,7 @@ using System.Windows;
 
 namespace Model
 {
-    public class Model
+    public class ModelApi
     {
         public int orbRadius = 20; // Na sztywno narazie
         public int orbQuantity;
@@ -20,15 +20,23 @@ namespace Model
         public void Enable()
         {
             logic.Enable();
-            isEnabled = true;
+            logic.CreateScene(windowHeight - 43.6, windowWidth - 170.4, orbQuantity, orbRadius);
+            GenerateOrbCollection();
         }
 
         public void Disable()
         {
+            orbs.Clear(); // temp
             logic.Disable();
-            isEnabled = false;
         }
 
+        private void GenerateOrbCollection()
+        {
+            foreach (var o in logic.GetOrbs())
+            {
+                orbs.Add(new Orb(o));
+            }
+        }
 
     }
 }

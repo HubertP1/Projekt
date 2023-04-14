@@ -1,22 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Orb
+    public class Orb : INotifyPropertyChanged
     {
-        private readonly double radius;
+        private double radius;
         private double posX;
         private double posY;
 
-        public Orb(double radius, double posX, double posY)
+        public Orb(Logic.Orb o)
         {
-            this.radius = radius;
-            this.posX = posX;
-            this.posY = posY;
+            Radius = o.Radius;
+            PositionX = o.PositionX;
+            PositionY = o.PositionY;
+            o.PropertyChanged += Update;
+        }
+
+        private void Update(object source, PropertyChangedEventArgs e)
+        {
+            Logic.Orb changedOrb = (Logic.Orb)source;
+            if (e.PropertyName == "PositionX")
+            {
+                PositionX = changedOrb.PositionX;
+            }
+            if (e.PropertyName == "PositionY")
+            {
+                PositionY = changedOrb.PositionY;
+            }
+        }
+
+        public double Radius
+        { 
+            get { return radius; } 
+            set
+            {
+                radius = value;
+                OnPropertyChanged(nameof(Radius));
+            }
+        }
+
+        public double PositionX
+        {
+            get { return posX; }
+            set
+            {
+                posX = value;
+                OnPropertyChanged(nameof(PositionX));
+            }
+        }
+
+        public double PositionY
+        {
+            get { return posY; }
+            set
+            {
+                posY = value;
+                OnPropertyChanged(nameof(PositionY));
+            }
+            
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -14,19 +14,33 @@ namespace Logic
         private double posX;
         private double posY;
 
-        public Orb(double radius, double posX, double posY)
+        public Orb(Data.Orb o)
         {
-            this.radius = radius;
-            this.posX = posX;
-            this.posY = posY;
+            Radius = o.Radius;
+            PositionX = o.PositionX;
+            PositionY = o.PositionY;
+            o.PropertyChanged += Update;
+        }
+
+        private void Update(object source, PropertyChangedEventArgs e)
+        {
+            Data.Orb changedOrb = (Data.Orb)source;
+            if (e.PropertyName == "PositionX")
+            {
+                PositionX = changedOrb.PositionX;
+            }
+            if (e.PropertyName == "PositionY")
+            {
+                PositionY = changedOrb.PositionY;
+            }
         }
 
         public double Radius
         {
-            get => radius;
+            get {return radius; }
             set
             {
-                this.radius = value;
+                radius = value;
                 OnPropertyChanged(nameof(Radius));
             }
         }
@@ -36,7 +50,7 @@ namespace Logic
             get { return posX; }
             set
             {
-                this.posX = value;
+                posX = value;
                 OnPropertyChanged(nameof(PositionX));
             }
         }
@@ -46,11 +60,10 @@ namespace Logic
             get { return posY; }
             set
             {
-                this.posY = value;
+                posY = value;
                 OnPropertyChanged(nameof(PositionY));
             }
         }
-
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
