@@ -34,8 +34,8 @@ namespace Logic
             {
                 int x = rand.Next(radius, (int)(width - radius));
                 int y = rand.Next(radius, (int)(height - radius));
-                int vx = rand.Next(-10,10);
-                int vy = rand.Next(-10,10);
+                int vx = rand.Next(-5,5);
+                int vy = rand.Next(-5,5);
                 dataApi.AddOrb(radius, x, y, vx, vy);
             }
 
@@ -48,9 +48,9 @@ namespace Logic
                     {
 
                         o.PositionX += o.VelocityX;
-                        if (o.PositionX < 0 + o.Radius)
+                        if (o.PositionX < 0)
                         {
-                            o.PositionX = 0 + o.Radius;
+                            o.PositionX = 0 ;
                             o.VelocityX *= -1;
                         } 
                         else if (o.PositionX > dataApi.SceneXDimension - o.Radius)
