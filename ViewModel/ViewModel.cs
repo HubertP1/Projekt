@@ -12,7 +12,18 @@ namespace ViewModel
     {       
         private readonly ModelApi model = new();
 
-        
+
+        public ObservableCollection<Orb> OrbList
+        {
+            get { return model.orbs; }
+            set 
+            { 
+                model.orbs = value; 
+                OnPropertyChanged(nameof(OrbList)); 
+            }
+        }
+
+
         public ViewModel()
         {
             StartButton = new Signal(Enable);
