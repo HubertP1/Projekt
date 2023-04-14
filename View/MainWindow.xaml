@@ -30,6 +30,24 @@
 
         <Button Grid.Column="1" Content="Start" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Width="62" IsEnabled="{Binding IsDisabled}" Command="{Binding StartButton}"/>
         <Button Grid.Column="1" Content="Stop" HorizontalAlignment="Right" Margin="75,58,10,0" VerticalAlignment="Top" Width="62" IsEnabled="{Binding IsEnabled}"  Command="{Binding StopButton}"/>
-   
+
+        <ItemsControl ItemsSource="{Binding OrbList}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas Width="600" Height="Auto" Margin="3"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                    <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Ellipse Height="{Binding Radius}" Width="{Binding Radius}" Fill="White" Stroke="Black" StrokeThickness="1"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Window>

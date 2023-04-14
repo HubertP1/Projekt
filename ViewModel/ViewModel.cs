@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using Model;
 
 
 namespace ViewModel
@@ -11,7 +13,18 @@ namespace ViewModel
     {       
         private readonly Model.Model model = new();
 
-        
+
+        public ObservableCollection<Orb> OrbList
+        {
+            get { return model.orbs; }
+            set 
+            { 
+                model.orbs = value; 
+                OnPropertyChanged(nameof(OrbList)); 
+            }
+        }
+
+
         public ViewModel()
         {
             StartButton = new Signal(Enable);
@@ -24,14 +37,12 @@ namespace ViewModel
         {
             get
             {
-                //return Convert.ToString(orbQuantity);
                 return Convert.ToString(model.orbQuantity);
             }
             set
             {
                 try
                 {
-                    //orbQuantity = Convert.ToInt32(value);
                     model.orbQuantity = Convert.ToInt32(value);
                 }
                 catch { }
