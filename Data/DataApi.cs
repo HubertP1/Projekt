@@ -14,7 +14,7 @@
             orbs = new List<Orb>();
         }
 
-        public void AddOrb(double radius, double posX, double posY, double velX = 0, double velY = 0)
+        public void AddOrb(double radius, double posX, double posY, double velX, double velY)
         {
             orbs.Add(new Orb(radius, posX, posY, velX, velY));
         }
