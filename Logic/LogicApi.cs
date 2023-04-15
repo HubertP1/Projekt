@@ -11,6 +11,7 @@ namespace Logic
             if (dataApi == null) dataApi = new DataApi();
             this.dataApi = dataApi;
         }
+
         public void Disable()
         {
             dataApi.IsEnabled = false;
@@ -34,9 +35,11 @@ namespace Logic
             {
                 int x = rand.Next(radius, (int)(width - radius));
                 int y = rand.Next(radius, (int)(height - radius));
-                int vx = rand.Next(-5, 5);
-                int vy = rand.Next(-5, 5);
-                dataApi.AddOrb(radius, x, y, vx, vy);
+                double vx = rand.Next(-500, 500) / 100.0;
+                double vy = rand.Next(-500, 500) / 100.0;
+                int randomRadius = rand.Next(10, 30);
+                dataApi.AddOrb(randomRadius, x, y, vx, vy);
+                // dataApi.AddOrb(radius, x, y, vx, vy);
             }
 
             // Tworzenie wątków orbów
