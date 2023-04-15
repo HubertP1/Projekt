@@ -10,13 +10,17 @@ namespace Tests
         public void GetterTest()
         {
             IData apiData = new DataApi();
-            ILogic apiLogic = new LogicApi(apiData);
+            ILogic apiLogic = new LogicApi(apiData);               
 
-            apiLogic.CreateScene(100, 300, 10, 20);
-            apiLogic.Enable();
+            double sceneXDim = 100;
+            double sceneYDim = 300;
+            int orbCount = 20;
+            int orbRad = 10;
 
-            Assert.AreEqual(100, apiData.SceneYDimension);
-            Assert.AreEqual(300, apiData.SceneXDimension);
+            apiLogic.CreateScene(sceneYDim, sceneXDim, orbCount, orbRad);   
+
+            Assert.AreEqual(sceneYDim, apiData.SceneYDimension);
+            Assert.AreEqual(sceneXDim, apiData.SceneXDimension);
         }
 
         [TestMethod]
@@ -25,10 +29,15 @@ namespace Tests
             IData apiData = new DataApi();
             ILogic apiLogic = new LogicApi(apiData);
 
-            apiLogic.CreateScene(100, 300, 10, 20);
+            double sceneXDim = 100;
+            double sceneYDim = 300;
+            int orbCount = 20;
+            int orbRad = 10;
 
-            Assert.AreEqual(10, apiData.GetOrbs().Count);
-            Assert.AreEqual(20, apiData.GetOrbs()[0].Radius);
+            apiLogic.CreateScene(sceneYDim, sceneXDim, orbCount, orbRad);
+
+            Assert.AreEqual(orbCount, apiData.GetOrbs().Count);
+            Assert.AreEqual(orbRad, apiData.GetOrbs()[0].Radius);
         }
 
         [TestMethod]

@@ -5,20 +5,35 @@ namespace Tests
     [TestClass]
     public class DataOrbTest
     {
-        Orb orb = new(20, 5, 10, 2, 3);
         [TestMethod]
         public void GetterTest()
         {
-            Assert.AreEqual(20, orb.Radius);
-            Assert.AreEqual(5, orb.PositionX);
-            Assert.AreEqual(10, orb.PositionY);
-            Assert.AreEqual(2, orb.VelocityX);
-            Assert.AreEqual(3, orb.VelocityY);
+            double rad = 20;
+            double posX = 5;
+            double posY = 10;
+            double velX = 2;
+            double velY = 3;
+
+            Orb orb = new(rad, posX, posY, velX, velY);
+
+            Assert.AreEqual(rad, orb.Radius);
+            Assert.AreEqual(posX, orb.PositionX);
+            Assert.AreEqual(posY, orb.PositionY);
+            Assert.AreEqual(velX, orb.VelocityX);
+            Assert.AreEqual(velY, orb.VelocityY);
         }
 
         [TestMethod]
         public void SetterTest()
         {
+            double rad = 20;
+            double posX = 5;
+            double posY = 10;
+            double velX = 2;
+            double velY = 3;
+
+            Orb orb = new(rad, posX, posY, velX, velY);
+
             orb.PositionX = 15;
             orb.PositionY = 25;
 

@@ -12,7 +12,13 @@ namespace Tests
 
             Assert.AreEqual(0, dataApi.GetOrbs().Count);
 
-            dataApi.AddOrb(20, 10, 15, 2, 3);
+            double rad = 20;
+            double posX = 5;
+            double posY = 10;
+            double velX = 2;
+            double velY = 3;
+
+            dataApi.AddOrb(rad, posX, posY, velX, velY);
 
             Assert.AreEqual(1, dataApi.GetOrbs().Count);
 
