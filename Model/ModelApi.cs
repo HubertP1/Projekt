@@ -12,10 +12,15 @@ namespace Model
         public double windowHeight;
         public double windowWidth;
         public bool isEnabled;
+        private readonly ILogic logic;
+
+        public ModelApi(ILogic logicApi = null)
+        {
+            if (logicApi == null) logicApi = new LogicApi();
+            this.logic = logicApi;
+        }
 
         public ObservableCollection<Orb> orbs = new();
-
-        private readonly LogicApi logic = new();
 
         public void Enable()
         {
@@ -26,7 +31,7 @@ namespace Model
 
         public void Disable()
         {
-            orbs.Clear(); // temp
+            orbs.Clear();
             logic.Disable();
         }
 
