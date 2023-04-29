@@ -25,7 +25,7 @@ namespace Model
         public void Enable()
         {
             logic.Enable();
-            logic.CreateScene(windowHeight - 43.6, windowWidth - 170.4, orbQuantity, orbRadius);
+            logic.Initialize(windowHeight - 43.6, windowWidth - 170.4, orbQuantity, orbRadius);
             GenerateOrbCollection();
         }
 

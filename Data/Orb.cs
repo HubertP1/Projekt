@@ -13,13 +13,22 @@ namespace Data
         private double velX;
         private double velY;
 
-        public Orb(double radius, double posX, double posY, double velX, double velY)
+        private double massMultiplier;
+
+        public Orb(double radius, double posX, double posY, double velX, double velY, double massMultiplier = 1)
         {
             this.radius = radius;
             this.posX = posX;
             this.posY = posY;
             this.velX = velX;
             this.velY = velY;
+            this.massMultiplier = massMultiplier;
+        }
+
+        public double MassMultiplier
+        {
+            get { return massMultiplier; }
+            set { massMultiplier = value; }
         }
 
         public double Radius { get { return radius; } }
@@ -47,19 +56,13 @@ namespace Data
         public double VelocityX
         {
             get { return velX; }
-            set
-            {
-                velX = value;
-            }
+            set { velX = value; }
         }
 
         public double VelocityY
         {
             get { return velY; }
-            set
-            {
-                velY = value;
-            }
+            set { velY = value; }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

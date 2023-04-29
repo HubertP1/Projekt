@@ -8,7 +8,7 @@ namespace Logic
 {
     public interface ILogic
     {
-        void CreateScene(double height, double width, int orbCount, int radius);
+        void Initialize(double height, double width, int orbCount, int radius);
 
         void Enable();
         
