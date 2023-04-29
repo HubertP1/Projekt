@@ -37,7 +37,7 @@ namespace Logic
 
         public double Radius
         {
-            get {return radius; }
+            get {return radius*2; }
             set
             {
                 radius = value;
@@ -47,7 +47,7 @@ namespace Logic
 
         public double PositionX
         {
-            get { return posX; }
+            get { return posX - radius; }
             set
             {
                 posX = value;
@@ -57,7 +57,7 @@ namespace Logic
 
         public double PositionY
         {
-            get { return posY; }
+            get { return posY - radius; }
             set
             {
                 posY = value;

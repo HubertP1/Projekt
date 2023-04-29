@@ -36,8 +36,8 @@ namespace Model
         }
 
         public double Radius
-        { 
-            get { return radius; } 
+        {
+            get { return radius; }
             set
             {
                 radius = value;

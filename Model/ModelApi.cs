@@ -1,6 +1,6 @@
-﻿using Logic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
+using Logic;
 
 namespace Model
 {
