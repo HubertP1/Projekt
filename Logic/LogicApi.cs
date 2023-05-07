@@ -30,6 +30,7 @@ namespace Logic
             // Generowanie orbów
             dataApi.ClearOrbs();
 
+            int orbId = 0;
             Random rand = new();
             for (int i = 0; i < orbCount; i++)
             {
@@ -38,7 +39,8 @@ namespace Logic
                 int y = rand.Next(randomRadius + 2, (int)(height - randomRadius - 2));
                 double vx = rand.Next(-500, 500) / 200.0;
                 double vy = rand.Next(-500, 500) / 200.0;
-                dataApi.AddOrb(randomRadius, x, y, vx, vy);
+                dataApi.AddOrb(randomRadius, x, y, vx, vy, orbId);
+                orbId++;
             }
 
             double gravity = 0.0;
@@ -104,11 +106,7 @@ namespace Logic
                         o.PositionX = newPosX;
                         o.PositionY = newPosY;
 
-                        Collision.CollisionCheck(dataApi.GetOrbs());
-                        if (o.PositionX < minX) { o.PositionX = minX; }
-                        if (o.PositionX > maxX) { o.PositionX = maxX; }
-                        if (o.PositionY < minY) { o.PositionY = minY; }
-                        if (o.PositionY > maxY) { o.PositionY = maxY; }
+                        Collision.CollisionCheck(dataApi.GetOrbs(), o);
 
                         o.VelocityY += gravity;
 

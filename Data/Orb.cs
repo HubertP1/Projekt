@@ -15,14 +15,28 @@ namespace Data
 
         private double massMultiplier;
 
-        public Orb(double radius, double posX, double posY, double velX, double velY, double massMultiplier = 1)
+        private int id;
+        private static object lockingVar = new object();
+
+        public Orb(double radius, double posX, double posY, double velX, double velY, int id, double massMultiplier)
         {
             this.radius = radius;
             this.posX = posX;
             this.posY = posY;
             this.velX = velX;
             this.velY = velY;
+            this.id = id;
             this.massMultiplier = massMultiplier;
+        }
+
+        public int Id
+        {
+            get { return id; }
+        }
+
+        public object LockingVar
+        {
+            get { return lockingVar; }
         }
 
         public double MassMultiplier
@@ -38,8 +52,11 @@ namespace Data
             get { return posX; }
             set
             {
-                posX = value;
-                OnPropertyChanged(nameof(PositionX));
+                lock (lockingVar)
+                {
+                    posX = value;
+                    OnPropertyChanged(nameof(PositionX));
+                }
             }
         }
 
@@ -48,21 +65,36 @@ namespace Data
             get { return posY; }
             set
             {
-                posY = value;
-                OnPropertyChanged(nameof(PositionY));
+                lock (lockingVar)
+                {
+                    posY = value;
+                    OnPropertyChanged(nameof(PositionY));
+                }
             }
         }
 
         public double VelocityX
         {
             get { return velX; }
-            set { velX = value; }
+            set
+            {
+                lock (lockingVar)
+                {
+                    velX = value;
+                }
+            }
         }
 
         public double VelocityY
         {
             get { return velY; }
-            set { velY = value; }
+            set
+            {
+                lock (lockingVar)
+                {
+                    velY = value;
+                }
+            }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
