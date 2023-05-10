@@ -9,17 +9,17 @@ using Model;
 namespace ViewModel
 {
     public class ViewModel : INotifyPropertyChanged
-    {       
+    {
         private readonly ModelApi model = new();
 
 
         public ObservableCollection<Orb> OrbList
         {
             get { return model.orbs; }
-            set 
-            { 
-                model.orbs = value; 
-                OnPropertyChanged(nameof(OrbList)); 
+            set
+            {
+                model.orbs = value;
+                OnPropertyChanged(nameof(OrbList));
             }
         }
 
@@ -40,13 +40,14 @@ namespace ViewModel
             }
             set
             {
+                int temp = model.orbQuantity;
                 try
                 {
                     model.orbQuantity = Convert.ToInt32(value);
                 }
-                catch 
+                catch
                 {
-                    OrbQuantity = "0";
+                    OrbQuantity = temp.ToString();
                 }
 
                 OnPropertyChanged(nameof(OrbQuantity));
@@ -93,8 +94,8 @@ namespace ViewModel
             set
             {
                 model.isEnabled = value;
-                OnPropertyChanged(nameof (IsEnabled));
-                OnPropertyChanged(nameof (IsDisabled));
+                OnPropertyChanged(nameof(IsEnabled));
+                OnPropertyChanged(nameof(IsDisabled));
             }
         }
 
@@ -103,8 +104,8 @@ namespace ViewModel
             get { return !IsEnabled; }
         }
 
-        public ObservableCollection<Orb> Orbs 
-        { 
+        public ObservableCollection<Orb> Orbs
+        {
             get { return model.orbs; }
         }
 
@@ -126,7 +127,7 @@ namespace ViewModel
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

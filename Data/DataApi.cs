@@ -7,7 +7,7 @@
 
         private bool Enabled;
 
-        private List<Orb> orbs;
+        private readonly List<Orb> orbs;
 
         public DataApi()
         {

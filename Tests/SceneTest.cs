@@ -17,7 +17,7 @@ namespace Tests
             int orbCount = 20;
             int orbRad = 10;
 
-            apiLogic.Initialize(sceneYDim, sceneXDim, orbCount, orbRad);   
+            apiLogic.Init(sceneYDim, sceneXDim, orbCount, orbRad);   
 
             Assert.AreEqual(sceneYDim, apiData.SceneYDimension);
             Assert.AreEqual(sceneXDim, apiData.SceneXDimension);
@@ -34,7 +34,7 @@ namespace Tests
             int orbCount = 20;
             int orbRad = 10;
 
-            apiLogic.Initialize(sceneYDim, sceneXDim, orbCount, orbRad);
+            apiLogic.Init(sceneYDim, sceneXDim, orbCount, orbRad);
 
             Assert.AreEqual(orbCount, apiData.GetOrbs().Count);
             Assert.AreEqual(orbRad, apiData.GetOrbs()[0].Radius);

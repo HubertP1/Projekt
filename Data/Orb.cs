@@ -15,8 +15,8 @@ namespace Data
 
         private double massMultiplier;
 
-        private int id;
-        private static object lockingVar = new object();
+        private readonly int id;
+        private static readonly object lockingVar = new();
 
         public Orb(double radius, double posX, double posY, double velX, double velY, int id, double massMultiplier)
         {
@@ -101,7 +101,7 @@ namespace Data
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

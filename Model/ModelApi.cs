@@ -16,8 +16,8 @@ namespace Model
 
         public ModelApi(ILogic logicApi = null)
         {
-            if (logicApi == null) logicApi = new LogicApi();
-            this.logic = logicApi;
+            logicApi ??= new LogicApi();
+            logic = logicApi;
         }
 
         public ObservableCollection<Orb> orbs = new();
@@ -25,7 +25,7 @@ namespace Model
         public void Enable()
         {
             logic.Enable();
-            logic.Initialize(windowHeight - 43.6, windowWidth - 170.4, orbQuantity, orbRadius);
+            logic.Init(windowHeight - 43.6, windowWidth - 170.4, orbQuantity, orbRadius);
             GenerateOrbCollection();
         }
 
