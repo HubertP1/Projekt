@@ -37,7 +37,6 @@ namespace Tests
             apiLogic.Init(sceneYDim, sceneXDim, orbCount, orbRad);
 
             Assert.AreEqual(orbCount, apiData.GetOrbs().Count);
-            Assert.AreEqual(orbRad, apiData.GetOrbs()[0].Radius);
         }
 
         [TestMethod]

@@ -14,7 +14,7 @@ namespace Tests
             double velX = 2;
             double velY = 3;
 
-            Orb orb = new(rad, posX, posY, velX, velY);
+            Orb orb = new(rad, posX, posY, velX, velY, 0, 0);
 
             Assert.AreEqual(rad, orb.Radius);
             Assert.AreEqual(posX, orb.PositionX);
@@ -32,7 +32,7 @@ namespace Tests
             double velX = 2;
             double velY = 3;
 
-            Orb orb = new(rad, posX, posY, velX, velY);
+            Orb orb = new(rad, posX, posY, velX, velY, 0, 0);
 
             orb.PositionX = 15;
             orb.PositionY = 25;

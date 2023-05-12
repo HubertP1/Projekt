@@ -18,7 +18,7 @@ namespace Tests
             double velX = 2;
             double velY = 3;
 
-            dataApi.AddOrb(rad, posX, posY, velX, velY);
+            dataApi.AddOrb(rad, posX, posY, velX, velY, 0);
 
             Assert.AreEqual(1, dataApi.GetOrbs().Count);
 
