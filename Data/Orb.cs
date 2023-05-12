@@ -16,7 +16,6 @@ namespace Data
         private double massMultiplier;
 
         private readonly int id;
-        private static readonly object lockingVar = new();
 
         public Orb(double radius, double posX, double posY, double velX, double velY, int id, double massMultiplier)
         {
@@ -34,11 +33,6 @@ namespace Data
             get { return id; }
         }
 
-        public object LockingVar
-        {
-            get { return lockingVar; }
-        }
-
         public double MassMultiplier
         {
             get { return massMultiplier; }
@@ -52,7 +46,7 @@ namespace Data
             get { return posX; }
             set
             {
-                lock (lockingVar)
+                lock (this)
                 {
                     posX = value;
                     OnPropertyChanged(nameof(PositionX));
@@ -65,7 +59,7 @@ namespace Data
             get { return posY; }
             set
             {
-                lock (lockingVar)
+                lock (this)
                 {
                     posY = value;
                     OnPropertyChanged(nameof(PositionY));
@@ -78,7 +72,7 @@ namespace Data
             get { return velX; }
             set
             {
-                lock (lockingVar)
+                lock (this)
                 {
                     velX = value;
                 }
@@ -90,7 +84,7 @@ namespace Data
             get { return velY; }
             set
             {
-                lock (lockingVar)
+                lock (this)
                 {
                     velY = value;
                 }

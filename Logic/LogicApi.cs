@@ -157,9 +157,9 @@ namespace Logic
                 o2 = orb1;
             }
 
-            lock (o1.LockingVar)
+            lock (o1)
             {
-                lock (o2.LockingVar)
+                lock (o2)
                 {
                     // Obliczanie odległości między kulami
                     double dx = o2.PositionX - o1.PositionX;
