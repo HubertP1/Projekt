@@ -1,10 +1,13 @@
 ﻿using Data;
+using System.Threading;
+using System.Timers;
 
 namespace Logic
 {
     public class LogicApi : ILogic
     {
         private IData dataApi;
+        private static System.Timers.Timer timer;
 
         public LogicApi(IData dataApi = null)
         {
@@ -15,12 +18,31 @@ namespace Logic
         public void Disable()
         {
             dataApi.IsEnabled = false;
+            timer.Stop();
+            timer.Dispose();
         }
 
         public void Enable()
         {
             dataApi.IsEnabled = true;
+            Logger.CheckFile();
         }
+
+        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            foreach (var o in dataApi.GetOrbs())
+            {
+                Logger.WriteData(o.Radius, o.PositionX, o.PositionY, o.VelocityX, o.VelocityY, o.Id);
+            }
+        }
+
+        private void SetTimer()
+        {
+            timer = new System.Timers.Timer(500);
+            timer.Elapsed += OnTimedEvent;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+        }     
 
         public void Init(double height, double width, int orbCount, int radius)
         {
@@ -42,6 +64,7 @@ namespace Logic
             }
 
             double gravity = 0.0;
+            SetTimer();
 
             // Tworzenie wątków orbów
             foreach (var o in dataApi.GetOrbs())
